@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.et.bean">
+	<class name="Classe" table="Classe_ssh">
+		<id name="id" column="class_id">
+			<generator class="native" />
+		</id>
+		<property name="name" column="cname" />
+
+		<many-to-one name="teacher" class="Teacher" unique="true"
+			column="teacher_id" not-null="false" />
+
+		<set name="studentSet" inverse="true" cascade="all">
+			<!--key指定关联关系列 -->
+			<key column="class_id" />
+			<!-- 指定set存储类型 -->
+			<one-to-many class="Student" />
+		</set>
+	</class>
+</hibernate-mapping>

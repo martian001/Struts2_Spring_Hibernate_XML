@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.et.bean">
+	<class name="Teacher" table="Teacher_ssh">
+		<id name="id" column="teacher_id">
+			<generator class="native" />
+		</id>
+		<property name="name" column="tname" />
+		<!-- 基于外键的一对一 ：property-ref引用的是classe的<many-to-one的name -->
+		<one-to-one name="classe" class="Classe" property-ref="teacher" cascade="all"/>
+	</class>
+</hibernate-mapping>

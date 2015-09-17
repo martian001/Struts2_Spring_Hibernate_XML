@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+    	<!-- 配置 hibernate 的基本属性 -->
+
+		<!-- ssss hibernate 2 hibernate一定要写方言,它是跨数据库的基础,模版模式的实现 -->
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+
+		<!-- ssss hibernate 3 为了调试方便,设置一些显示sql的值 hibernate 是否显示及格式化 SQL -->
+		<!-- <property name="hibernate.show_sql">true</property> -->
+		<!-- <property name="hibernate.format_sql">true</property> -->
+
+		<!-- ssss hibernate 4 是否要重建数据库或者更新数据库的选项,非常危险,如果是建库或者配置数据,最好不要打开这个开关 -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<!-- 二级缓存相关 -->
+	</session-factory>
+</hibernate-configuration>

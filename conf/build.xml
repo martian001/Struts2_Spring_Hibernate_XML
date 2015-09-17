@@ -1,0 +1,20 @@
+<project default="init">
+
+	<target name="init">
+		<echo>初始化</echo>
+		<!-- 删除文件夹下的文件-->
+		<delete>
+			<fileset dir="temp" />
+		</delete>
+	</target>
+
+	<target name="complile">
+		<echo>编译</echo>
+		<javac srcdir="src" destdir="temp">
+		</javac>
+	</target>
+
+	<target name="jar">
+		<echo>打jar</echo>
+	</target>
+</project>

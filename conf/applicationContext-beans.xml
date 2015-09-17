@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	<!-- 如果是一个在配置文件里面声明的抽象bean,那么这个bean不能被初始化,只能做模版 -->
+	<bean id="baseDao" class="com.et.base.BaseDaoImpl" abstract="true">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="classDao" class="com.et.dao.impl.ClassDaoImpl" parent="baseDao" />
+	<bean id="studentDao" class="com.et.dao.impl.StudentDaoImpl" parent="baseDao" />
+	<bean id="teacherDao" class="com.et.dao.impl.TeacherDaoImpl" parent="baseDao" />
+
+	<bean id="studentService" class="com.et.service.impl.StudentServiceImpl">
+		<property name="baseDao" ref="studentDao" />
+		<property name="studentDao" ref="studentDao" />
+	</bean>
+	<bean id="classService" class="com.et.service.impl.ClassServiceImpl">
+		<property name="baseDao" ref="classDao" />
+		<property name="classDao" ref="classDao" />
+	</bean>
+	<bean id="teacherService" class="com.et.service.impl.TeacherServiceImpl">
+		<property name="baseDao" ref="teacherDao" />
+		<property name="teacherDao" ref="teacherDao" />
+	</bean>
+
+	<bean id="baseAction" class="com.et.base.BaseAction" abstract="true">
+		<property name="studentService" ref="studentService" />
+		<property name="classService" ref="classService" />
+		<property name="teacherService" ref="teacherService" />
+	</bean>
+	<bean id="loginAction" class="com.et.action.LoginAction">
+		<property name="studentService" ref="studentService" />
+	</bean>
+
+	<bean id="classAction" class="com.et.action.ClassAction" parent="baseAction" />
+	<bean id="studentAction" class="com.et.action.StudentAction" parent="baseAction" />
+	<bean id="teacherAction" class="com.et.action.TeacherAction" parent="baseAction" />
+</beans>

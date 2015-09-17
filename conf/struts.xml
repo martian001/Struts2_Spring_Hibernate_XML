@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- devMode(开发模式)是struts2里面的最常用的常量, 如果开发模式设为true,所有的配置文件,资源文件 不需要重启服务器就可以获得 
+		但是有个缺点是非常耗费性能,一般发布给客户一定要关闭, -->
+	<constant name="struts.devMode" value="true" />
+	<package name="default" namespace="/" extends="struts-default">
+		<action name="loginAction" class="loginAction">
+			<result name="succeed">/index.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		<!-- 学生 -->
+		<action name="studentAction_*" class="studentAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/studentAction/list.jsp</result>
+			<result name="addUI">/WEB-INF/jsp/studentAction/addOrEditUI.jsp
+			</result>
+			<result name="editUI">/WEB-INF/jsp/studentAction/addOrEditUI.jsp
+			</result>
+			<result name="toList" type="redirectAction">studentAction_list</result>
+			<result name="ajax_success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 班级 -->
+		<action name="classAction_*" class="classAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/classAction/list.jsp</result>
+			<result name="addUI">/WEB-INF/jsp/classAction/addOrEditUI.jsp
+			</result>
+			<result name="editUI">/WEB-INF/jsp/classAction/addOrEditUI.jsp
+			</result>
+			<result name="toList" type="redirectAction">classAction_list</result>
+			<result name="ajax_success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- 老师 -->
+		<action name="teacherAction_*" class="teacherAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/teacherAction/list.jsp</result>
+			<result name="addUI">/WEB-INF/jsp/teacherAction/addOrEditUI.jsp
+			</result>
+			<result name="editUI">/WEB-INF/jsp/teacherAction/addOrEditUI.jsp
+			</result>
+			<result name="toList" type="redirectAction">teacherAction_list</result>
+		</action>
+	</package>
+</struts>
