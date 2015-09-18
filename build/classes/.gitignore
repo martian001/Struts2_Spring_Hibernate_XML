@@ -1,9 +1,1 @@
-/applicationContext-beans.xml
-/applicationContext-quatz.xml
-/applicationContext.xml
-/build.xml
 /com/
-/db.properties
-/hibernate.cfg.xml
-/log4j.properties
-/struts.xml

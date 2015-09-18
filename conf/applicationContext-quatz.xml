@@ -12,7 +12,7 @@
 		<property name="queueCapacity" value="500" />
 	</bean>
 	<!-- 业务对象 -->
-	<bean id="bizObject" class="com.et.service.impl.ExpireJobTask" />
+	<bean id="bizObject" class="com.et.quatz.ExpireJobTask" />
 	<!-- 调度业务 -->
 	<bean id="jobDetail"
 		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
